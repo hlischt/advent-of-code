@@ -8,10 +8,12 @@ def part1(crab: list):
 
 # SLOOOOOOWWWWWWWW
 # How do I optimize this?
+#
+# Wait... I can use the (n(n+1))/2 identity....................
 def part2(crab: list):
     fuel = []
     for i in range(max(crab)):
-        sumfuel = sum([sum([x for x in range(1, abs(x-(i+1))+1)]) \
+        sumfuel = sum([ (abs(x-i) * (abs(x-i)+1)) // 2 \
                        for x in crabs])
         fuel.append(sumfuel)
     return min(fuel)
