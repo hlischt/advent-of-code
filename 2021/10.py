@@ -1,10 +1,9 @@
 import sys
-from collections import deque
 
 def part1(inp: list):
     err_score = 0
     for i in infile:
-        stack = deque()
+        stack = []
         for c in i:
             if c in '[({<':
                 stack.append(c)
@@ -21,7 +20,7 @@ def part2(inp: list):
         corrupt = False
         score = 0
         completion = ''
-        stack = deque()
+        stack = []
         for c in i:
             if c in '[({<':
                 stack.append(c)
