@@ -4,11 +4,18 @@ const logic = {
 		paper: 'rock',
 		scissors: 'paper'
 };
+const meaning = {
+		A: 'rock', X: 'rock',
+		B: 'paper', Y: 'paper',
+		C: 'scissors', Z: 'scissors',
+};
 const options = ['rock', 'paper', 'scissors'];
-options.loseAgainst = function (num) {
+
+options.loserAgainst = function (num) {
 		return mod((num - 1), this.length);
 };
-options.winAgainst = function (num) {
+
+options.winnerAgainst = function (num) {
 		return (num + 1) % this.length;
 };
 
@@ -16,23 +23,15 @@ function mod(num, limit) {
 		return ((num % limit) + limit) % limit;
 }
 
-function getNumber(char) {
-		if (['A', 'B', 'C'].includes(char)) {
-				return char.codePointAt() - 64;
-		}
-    if (['X', 'Y', 'Z'].includes(char)) {
-				return char.codePointAt() - 87;
-		}
-		throw new Error('Invalid input (not "A", "B", "C", "X", "Y", "Z")');
-}
-
 function rps(opponent, you) {
-		let [oppVal, youVal] = [getNumber(opponent), getNumber(you)];
-		if (oppVal === youVal) return youVal + 3;
-		if (logic[options[oppVal-1]] === options[youVal-1]) {
-				return youVal;
+		const points = you.codePointAt() - 87; // 'X' is ASCII 88
+		if (meaning[opponent] === meaning[you]) { // draw
+				return points + 3;
 		}
-		return youVal + 6;
+		if (logic[meaning[opponent]] === meaning[you]) { // opponent wins
+				return points;
+		}
+		return points + 6; // you win
 }
 
 function parseInput(input) {
@@ -46,14 +45,14 @@ function part1(input) {
 
 function part2(input) {
 		const conditions = {
-				X: (x => options.loseAgainst(options.indexOf(x)) + 1),
+				X: (x => options.loserAgainst(options.indexOf(x)) + 1),
 				Y: (x => options.indexOf(x) + 4),
-				Z: (x => options.winAgainst(options.indexOf(x)) + 7)
+				Z: (x => options.winnerAgainst(options.indexOf(x)) + 7)
 		};
 		let count = 0;
 		for (let i of parseInput(input)) {
 				const func = conditions[i[1]];
-				count += func(options[getNumber(i[0])-1]);
+				count += func(meaning[i[0]]);
 		}
 		return count;
 }
