@@ -54,12 +54,12 @@ function commonInGroup(group) {
 		throw new Error('No common item found in group');
 }
 
-function day1(input) {
+function part1(input) {
 		return parseInput(input).map(repeated)
 				.reduce((acc, item) => acc + item, 0);
 }
 
-function day2(input) {
+function part2(input) {
 		return groupsOf3(parseInput(input)).map(commonInGroup).map(priority)
 				.reduce((acc, item) => acc + item, 0);
 }
