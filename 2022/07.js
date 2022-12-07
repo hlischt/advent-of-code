@@ -114,7 +114,7 @@ function dfsSizes2(dir) {
       }
     }
   }
-  return smallest;
+  return smallest.size;
 }
 
 function part1(textInput) {
