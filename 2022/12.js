@@ -91,7 +91,10 @@ function findZeros(input) {
 	let zeros = [];
 	for (let i = 0; i < input.length; i++) {
 		for (let j = 0; j < input[i].length; j++) {
-			if (input[i][j] === 0) {
+			if (
+				input[i][j] === 0 && input.neighbors(i, j)
+						.filter((x) => x.value === 1).length > 0
+			) {
 				zeros.push([i, j]);
 			}
 		}
@@ -106,7 +109,8 @@ function part1(textInput) {
 	return countPath(path, end.toString());
 }
 
-// SLOW... How do I optimize this?
+// SLOW... But about 2.5x faster than the previous version
+// thanks to the second condition in findZeros
 function part2(textInput) {
 	let { map: input, start, end } = parseInput(textInput);
 	input.neighbors = neighbors;
@@ -115,7 +119,7 @@ function part2(textInput) {
 	for (let z of zeros) {
 		let path = bfs(z, end, input);
 		let count = countPath(path, end.toString());
-		if (count > 1) { // I have no idea why there's so many ones in my output
+		if (count > 1) {
 			steps.push(count);
 		}
 	}
