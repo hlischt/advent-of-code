@@ -33,10 +33,11 @@ numerals = {
 
 def find_last_idx(haystack: str, needle: str):
     '''Without this function, part 2 gives the wrong result.'''
-    index = -1
-    for idx, _ in enumerate(haystack):
-        if haystack[idx:].startswith(needle):
-            index = idx
+    index = len(haystack) - 1
+    while index >= 0:
+        if haystack[index:].startswith(needle):
+            return index
+        index -= 1
     if index == -1:
         raise IndexError(f'"{needle}" is not a substring of "{haystack}"')
     return index
