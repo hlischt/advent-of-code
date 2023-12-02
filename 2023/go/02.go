@@ -29,6 +29,9 @@ func buildCubeSubset(cubeSet string) day02CubeSet {
 	set := strings.SplitN(cubeSet, ", ", -1)
 	for _, color := range set {
 		matches := re.FindStringSubmatch(color)
+		if len(matches) < 3 {
+			continue
+		}
 		num, err := strconv.Atoi(matches[1])
 		if err != nil {
 			log.Panic(err)
