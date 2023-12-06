@@ -34,18 +34,6 @@ func day06waysToWin(duration, record int) int {
 func day06getSpeeds(times, dist []int) int {
 	total := 1
 	for i := 0; i < len(times); i++ {
-		// duration := times[i]
-		// record := dist[i]
-		// waysToWin := 0
-		// for j := 0; j < duration; j++ {
-		// 	sToMove := duration - j
-		// 	movement := sToMove * j
-		// 	if movement > record {
-		// 		waysToWin = duration + 1 - j*2
-		// 		break
-		// 	}
-		// }
-		// total *= waysToWin
 		total *= day06waysToWin(times[i], dist[i])
 	}
 	return total
