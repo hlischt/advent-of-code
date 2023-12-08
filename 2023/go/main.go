@@ -16,6 +16,7 @@ var days map[int]func(io.Reader) (int, int) = map[int]func(io.Reader) (int, int)
 	// 5: day05,
 	6: day06,
 	7: day07,
+	8: day08,
 }
 
 func main() {
