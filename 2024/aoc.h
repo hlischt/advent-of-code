@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define BUFLEN 1024
 
@@ -12,5 +13,6 @@ struct answer {
 };
 
 struct answer day01(FILE*);
+struct answer day02(FILE*);
 
 #endif

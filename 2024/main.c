@@ -4,7 +4,7 @@
 #include "aoc.h"
 
 struct answer (*funcs[]) (FILE*) = {
-	day01
+	day01, day02
 };
 
 int main(int argc, char **argv) {
